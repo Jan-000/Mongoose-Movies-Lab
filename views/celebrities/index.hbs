@@ -1,8 +1,18 @@
-<h2>{{title}} 🚀</h2>
-{{#each}}
 
-{{name}}
-<a href="/celebrities">See the stars!</a>
+{{#each celebrities }}
+<h2>{{name}} 🏄🏽‍♂️ </h2>
+
+<a href="/celebrities/{{_id}}">See that star!</a>
+
+<form action="celebrities/delete/{{_id}}" method = "POST"> 
+<button>delete</button>
+</form>
 {{/each}}
 
-<p>Welcome Ironhacker!</p>
+<br><br>
+
+<a href="/celebrities/new">Create new star!</a>
+
+<a href="/celebrities">Gå hjem</a>
+
+<footer><br><br><br><br>Welcome Ironhacker! This view is index.hbs placed within views</footer>

@@ -1,0 +1,19 @@
+<h2>You are editing {{celebrity.name}}</h2>
+
+<form action="/celebrities/{{_id}}" method = "POST"> 
+
+	<label for="name">name</label>
+	<input type="text" name="name" id="name" value="{{celebrity.name}}" required>
+
+	<label for="occupation">occupation</label>
+	<input type="text" name="occupation" id="occupation" value="{{celebrity.occupation}}">
+
+	<label for="catchPhrase">catchPhrase</label>
+	<input type="text" name="catchPhrase" id="catchPhrase" value="{{celebrity.catchPhrase}}">
+
+	<button type="submit">This is how the star evolves</button>
+
+</form>
+
+
+<footer><br><br><br><br>Welcome Ironhacker! This view is edit.hbs placed within views</footer>

@@ -1,4 +1,4 @@
-const Celeb = require("../models/Celeb");
+const Celebrity = require("../models/Celebrity");
 
 const router = require("express").Router();
 
@@ -6,31 +6,21 @@ const router = require("express").Router();
 
 router.get('/celebrities', (req, res, next) => {
 	// get all the books from the db
-	Celeb.find()
-		.then(celebsFromDB => {
-			console.log(celebsFromDB)
+	Celebrity.find()
+		.then(celebritiesFromDB => {
+			console.log(celebritiesFromDB)
 			// render a view
-			res.render('books/index', { books: celebsFromDB })
+			res.render('celebrities/index', { celebrities: celebritiesFromDB })
 		})
 		.catch(err => next(err))
 	// render a view and display the titles
 })
 
-router.get('/celebrities/:id', (req, res, next) => {
-	// retrieve that book from the db
-	const id = req.params.id
-	console.log(id)
-	Celeb.findById(id)
-		.then(celebFromDB => {
-			console.log(celebFromDB)
-			res.render('celeb/show', { celeb: celebFromDB })
-		})
-		.catch(err => next(err))
-})
+
 
 
 router.get('/celebrities/new', (req, res, next) => {
-	res.render('/celebrities/new')
+	res.render('celebrities/new')
 });
 
 
@@ -49,25 +39,54 @@ router.post('/celebrities', (req, res, next) => {
 		.catch(err => next(err))
 });
 
+router.get('/celebrities/:id', (req, res, next) => {
+	// retrieve that book from the db
+	const id = req.params.id
+	console.log(id)
+	Celebrity.findById(id)
+		.then(celebrityFromDB => {
+			console.log(celebrityFromDB)
+			res.render('celebrities/show', { celebrity: celebrityFromDB })
+		})
+		.catch(err => next(err))
+})
+
+
+router.get('/celebrities/edit/:id', (req, res, next) => {
+	const id = req.params.id
+	Celebrity.findById(id)
+		.then(celebrityFromDB => {
+			res.render('celebrities/edit', { celebrity: celebrityFromDB })
+		})
+		.catch(err => next(err))
+});
 
 
 
-
-/*router.post('/celebritiesupdate/:id', (req, res, next) => {
+router.post('/celebrities/:id', (req, res, next) => {
 	const { name, occupation, catchPhrase } = req.body
-	// by passing {new true} as a third param findByIdAndUpdate returns 
-	// the updated book
-	Celeb.findByIdAndUpdate(req.params.id, {
+	
+	Celebrity.findByIdAndUpdate(req.params.id, {
 		name,
-    occupation,
-    catchPhrase
+		occupation,
+		catchPhrase
 	}, { new: true })
-		.then(updatedCelebrity => {
-			console.log(updatedCelebrity)
-			res.redirect(`/celebrities/${updatedCelebrity._id}`)
+		.then(editedCelebrity => {
+			console.log(editedCelebrity)
+			res.redirect(`/celebrities/$editedCelebrity._id}`)
 		})
 });
-*/
+
+
+router.post('/celebrities/delete/:id', (req, res, next) => {
+	const id = req.params.id
+	Celebrity.findByIdAndDelete(id)
+		.then(deletedCelebrity => {
+			console.log(deletedCelebrity)
+			res.redirect('/celebrities')
+		})
+		.catch(err => next(err))
+});
 
 
 module.exports = router;

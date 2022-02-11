@@ -1,10 +1,10 @@
-const Celeb = require("../models/Celeb")
+const Celebrity = require("../models/Celebrity")
 const mongoose = require('mongoose')
 mongoose.connect("mongodb://localhost/MoviesLab")
 
 
 
-const celebs = [
+const celebrities = [
 {
     name: "Popeye",
     occupation: "Sailor",
@@ -23,7 +23,7 @@ const celebs = [
     catchPhrase: "totooot",
   }]
 
-  Celeb.create(celebs)
-.then(createdCeleb => {console.log(`created: ${createdCeleb}`)
+  Celebrity.create(celebrities)
+.then(createdCelebrity => {console.log(`created: ${createdCelebrity}`)
 mongoose.connection.close()
 })

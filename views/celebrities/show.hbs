@@ -1,13 +1,19 @@
-<h2> for the page's heading.
-Display tags with the celebrity's name, occupation and catchPhrase.
+<h2>You have chosen the following celebrity: </h2>
+
+{{#with celebrity}}
+
+<h3>the name is: <i>{{name}}</i></h3>
+<h3>the occupation is: <i>{{occupation}}</i></h3>
+<h3>what he says? <i>"{{catchPhrase}}"</i></h3>
+<br>
+<ul>
 
 
-<h2>CHEAP SHOW</h2>
-{{#each}}
+<li><a href="/celebrities/edit/{{_id}}">Make the star evolve</a></li>
 
-{{name}}
-{{occupation}}
-{{catchPhrase}}
 
-<a href="/celebrities/{{_id}}">See that one star</a>
-{{/each}}
+<li><a href="/celebrities/delete/{{_id}}">Remove this hero</a></li>
+{{/with}}
+
+<li><a href="/celebrities">Gå hjem</a></li></ul>
+<footer><br><br><br><br><br>you're on the page show.hbs</footer>

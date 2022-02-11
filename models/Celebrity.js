@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const celebSchema = new Schema(
+const celebritySchema = new Schema(
   {
     name : String,
     occupation: String,
@@ -14,6 +14,6 @@ const celebSchema = new Schema(
   }
 );
 
-const Celeb = model("Celeb", celebSchema);
+const Celebrity = model("Celebrity", celebritySchema);
 
-module.exports = Celeb;
+module.exports = Celebrity;
