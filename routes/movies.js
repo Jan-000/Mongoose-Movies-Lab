@@ -45,18 +45,19 @@ router.get("/:id/edit", (req, res, next) => {
 		celebrities.forEach(actor => {selected = movie.cast.map(el => el._id).includes(actor._id) ? "selected" : "";
 	options += `<option value="${actor._id}" ${selected}>${actor.name}</option>`;});
 	console.log(options);
-	res.render("movies/edit", {movie, celebrities});
+	res.render("movies/edit",{movie, celebrities});
 	})
 })
 .catch(err => {next(err);})
-})
+});
 
-router.post("/:id/", (req,res) => {const {title, genre, polot, cast} = req.body;
-Movie.findByIdAndUpdate(req.params.id, {title, genre, plot, cast}).then(() => {
+router.post("/:id/", (req,res, next) => {const {title, genre, plot, cast} = req.body;
+Movie.findByIdAndUpdate(req.params.id, { title, genre, plot, cast }).then(() => {
 	res.redirect("/movies");
 })
-.catch(err => {next(err);
-});
+.catch(err => {
+	next(err);
+	});
 });
 
 module.exports = router;

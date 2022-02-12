@@ -8,7 +8,7 @@ router.get('/celebrities', (req, res, next) => {
 	// get all the books from the db
 	Celebrity.find()
 		.then(celebritiesFromDB => {
-			console.log(celebritiesFromDB)
+			//console.log(celebritiesFromDB)
 			// render a view
 			res.render('celebrities/index', { celebrities: celebritiesFromDB })
 		})
@@ -28,7 +28,7 @@ router.post('/celebrities', (req, res, next) => {
 
 
 	const { name, occupation, catchPhrase } = req.body
-
+console.log("this is the req in celeb route", req)
 	Celebrity.create({ name, occupation, catchPhrase })
 		.then(createdCelebrity => {
 			console.log(createdCelebrity)
@@ -40,7 +40,7 @@ router.post('/celebrities', (req, res, next) => {
 });
 
 router.get('/celebrities/:id', (req, res, next) => {
-	// retrieve that book from the db
+	// retrieve that celeb from the db
 	const id = req.params.id
 	console.log(id)
 	Celebrity.findById(id)
